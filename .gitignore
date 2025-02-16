@@ -44,7 +44,7 @@ __pycache__/
 *.pyd
 
 # virtual environments
-venv/
+api/.venv/
 .env/
 .env.local
 

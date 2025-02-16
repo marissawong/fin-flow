@@ -3,7 +3,7 @@ import uuid
 from pydantic import EmailStr
 from sqlalchemy import Column, UUID, String
 
-from infrastructure.database import Base
+from app.infrastructure.database import Base
 
 
 class User(Base):
