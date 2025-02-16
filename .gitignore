@@ -30,12 +30,57 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+
+# virtual environments
+venv/
+.env/
+.env.local
+
+# db files
+*.sqlite3
+*.db
+
+# logs
+logs/
+*.log
+*.out
+*.pid
+*.swp
+
+# compiled files
+*.pyc
+*.pyo
+
+# pytest and cache
+.cache/
+.pytest_cache/
+
+# vscode settings
+.vscode/
+
+# pycharm settings
+.idea/
+*.iml
+
+# build
+dist/
+build/
+
+# fastapi files
+staticfiles/
+media/
+
+# local tools and dependencies
+poetry.lock
