@@ -77,7 +77,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7C4D6C1F712D431F91F2D42A44D6DD62 }}
 
       - name: "Deploy to Azure Web App"
-        uses: azure/webapps-deploy@v2.2.9
+        uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: "fin-flow-api"
