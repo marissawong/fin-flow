@@ -47,6 +47,7 @@ jobs:
         with:
           name: python-app
           path: |
+            cd api
             release.zip
             !venv/
 
