@@ -7,14 +7,14 @@
 
 ### Executing
 #### MacOS
-1. Inside folder `api`, run `pyenv exec python -m venv .venv`
+1. Run `pyenv exec python -m venv .venv`
 2. A new folder `.venv` will be created
 3. Run `source ./.venv/bin/activate` to activate your virtual environment
 4. Run `pip install -r requirements.txt` to install required packages
 5. Run `uvicorn app.main:app --reload` to start the API locally
 
 #### Windows
-1. Inside folder `api`, run `python -m venv .venv`
+1. Run `python -m venv .venv`
 2. A new folder `.venv` will be created
 3. Run `.venv/Scripts/activate` to activate your virtual environment
 4. Run `pip install -r requirements.txt` to install required packages
