@@ -1,9 +1,10 @@
 from http.client import HTTPException
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status, Response
 from pydantic import EmailStr
 from sqlalchemy.orm import Session
 
+from app.application.dto.create_user_dto import CreateUserDTO
 from app.application.dto.user_dto import UserDTO
 from app.application.use_cases.create_user import CreateUser
 from app.application.use_cases.get_user import GetUserByEmail
@@ -13,18 +14,24 @@ from app.infrastructure.repositories.user_repository_impl import UserRepositoryI
 router = APIRouter(prefix="/user", tags=["Users"])
 
 @router.get("/{email}")
-def get_user(email: EmailStr, db: Session = Depends(get_db)):
+def get_user(email: EmailStr, response: Response, db: Session = Depends(get_db)):
     user_repo = UserRepositoryImpl(db)
     use_case = GetUserByEmail(user_repo)
     user = use_case.execute(email)
 
     if not user:
-        raise HTTPException()
+        response.status_code = status.HTTP_204_NO_CONTENT
+        return "User not found"
 
     return UserDTO.model_validate(user)
 
 @router.post("/")
-def create_user(name: str, email: EmailStr, db: Session = Depends(get_db)):
+def create_user(user: CreateUserDTO, response: Response, db: Session = Depends(get_db)):
     user_repo = UserRepositoryImpl(db)
-    use_case = CreateUser(user_repo)
-    return use_case.execute(name, email)
+    user = GetUserByEmail(user_repo).execute(user.email)
+    if user:
+        response.status_code = status.HTTP_409_CONFLICT
+        return f"User with email {user.email} already exists"
+
+    create_user_use_case = CreateUser(user_repo)
+    return create_user_use_case.execute(user.name, user.email)
