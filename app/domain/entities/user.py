@@ -16,3 +16,7 @@ class User(Base):
     @staticmethod
     def create_user(name: str, email: EmailStr):
         return User(user_id=uuid.uuid4(), name=name, email=email)
+
+    @staticmethod
+    def delete_user(email: EmailStr):
+        return bool

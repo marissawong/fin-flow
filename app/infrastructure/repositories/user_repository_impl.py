@@ -17,3 +17,6 @@ class UserRepositoryImpl(UserRepository):
 
     def get(self, email: EmailStr):
         return self.db.query(User).filter(User.email == email).first()
+
+    def delete(self, email: EmailStr):
+        return self.db.query(User).filter(User.email == email).delete()

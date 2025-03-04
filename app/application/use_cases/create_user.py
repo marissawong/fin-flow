@@ -9,8 +9,5 @@ class CreateUser:
         self.user_repository = user_repository
 
     def execute(self, name: str, email: EmailStr) -> User:
-        existing_user = self.user_repository.get(email)
-        if existing_user:
-            return existing_user
         user = User.create_user(name, email)
         return self.user_repository.create(user)

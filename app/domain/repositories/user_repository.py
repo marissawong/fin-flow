@@ -13,3 +13,7 @@ class UserRepository(ABC):
     @abstractmethod
     def get(self, email: EmailStr):
         pass
+
+    @abstractmethod
+    def delete(self, email: EmailStr):
+        pass
